@@ -1,0 +1,68 @@
+//digitar na raiz
+ssh root@[ip]
+senha do server
+
+git clone [meu-repositorio]
+
+ls -l //saber que esta no server
+
+curl -sSL https://get.haskellstack.org/ | sh
+stack --version //saber se instalou
+
+cd [pasta]
+
+stack install
+
+parou no passo 43: sudo apt install libpq-dev -> stack install
+
+sudo apt install postgresql postgresql-contrib //instala o banco
+sudo -i -u postgres //cria um usuario linux para o banco
+createdb [nome-banco] //cria o banco
+createuser --interactive --pwprompt //cria usuario
+sudo -i -u postgres
+psql
+GRANT ALL ON DATABASE [nome-banco] TO admin1; //da permissao ao usuario fazer tudo
+
+no local/ide
+git add .
+git commit -m "solucao do erro"
+git push origin master
+
+no server: git pull origin master
+a partir de agora: stack build
+
+no arquivo: settings.yml -> porta 80 | usuario [nome-usuario] | senha root | host localhost | banco [nome-banco]
+
+arquivo home.hs:
+
+{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TypeFamilies #-}
+module Handler.Home where
+
+import Import
+--import Network.HTTP.Types.Status
+import Database.Persist.Postgresql
+
+getHomeR :: Handler Html
+getHomeR = do
+    defaultLayout $
+        [whamlet|
+            <h1>
+                OLA MUNDO
+        |]
+        
+no local/ide:
+git add .
+git commit -m "solucao do erro"
+git push origin master
+
+no server: git pull origin master
+a partir de agora: stack build
+
+stack exec aulahaskell
+
+entrar no endereco do site.
